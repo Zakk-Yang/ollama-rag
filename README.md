@@ -10,10 +10,6 @@ This project is a robust and modular application that builds an efficient query 
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Adding Documents](#adding-documents)
-- [Logging](#logging)
-- [Handling Missing Index Files](#handling-missing-index-files)
-- [Customization](#customization)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -28,4 +24,98 @@ This project is a robust and modular application that builds an efficient query 
 - **Logging**: Provides detailed logs for monitoring and debugging.
 
 ## Project Structure
-my_llama_project/ ├── main.py ├── models.py ├── data_loader.py ├── indexer.py ├── query_engine.py ├── prompts.py ├── configs.py ├── document_tracker.py ├── requirements.txt ├── storage/ # Generated index data (ignored by Git) ├── chroma_db/ # ChromaDB data (ignored by Git) ├── indexed_files.json # Indexed files metadata (ignored by Git) └── documents/ # User documents (ignored by Git)
+```graphql
+my_llama_project/
+├── main.py
+├── models.py
+├── data_loader.py
+├── indexer.py
+├── query_engine.py
+├── prompts.py
+├── configs.py            # Updated config file with multiple INPUT_DIRS
+├── document_tracker.py   # New module for tracking indexed files
+├── requirements.txt
+├── storage/              # Directory for persisted index data (created automatically if missing)
+├── chroma_db/            # Directory for ChromaDB data (created automatically if missing)
+├── indexed_files.json    # Indexed files metadata (auto-created if missing)
+└── documents/            # Directory containing the documents to be indexed
+
+```
+
+## Prerequisites
+
+- **Python 3.7 or higher**: Ensure you have Python installed.
+- **Git**: For cloning the repository.
+- **Pip**: Python package installer.
+
+## Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/Zakk-Yang/ollama-rag.git
+   cd my_llama_project
+   ```
+
+2. **Create a Virtual Environment (Recommended)**
+    ```bash
+    conda create -n env python=3.10
+    conda activate env
+    ```
+
+3. **Install Dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    
+4. **Install Ollama model**
+Please visit https://ollama.com/download for more details.
+Install your selected model by the following example: 
+```bash
+ollama pull llama3.2
+```
+
+## Configuration
+1. **Configure Input Directories**
+Open configs.py and update the INPUT_DIRS list with the paths to your document directories.
+```python
+INPUT_DIRS = [
+    '/your/path/to/your/document1',
+    '/your/path/to/your/document2',
+    # Add more directories as needed
+]
+```
+2. **Model Name and Other Path Locations**
+
+
+## Usage
+1. Run the Application
+```bash
+python main.py
+```
+
+2.Running with a Custom Query
+
+```bash
+python main.py --query "Your custom query here"
+```
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the Repository
+2. Create a Branch
+```bash
+git checkout -b feature/your-feature-name
+```
+
+3. Commit Your Changes
+```bash
+git commit -am 'Add new feature'
+```
+4.Push to the Branch
+```bash
+git push origin feature/your-feature-name
+```
+
+## License
+The source code for the site is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.

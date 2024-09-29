@@ -12,8 +12,8 @@ TRUST_REMOTE_CODE = True
 
 # Data loader configurations
 INPUT_DIRS = [  # List of directories where your documents are stored
-    "documents",  # First directory
-    "/mnt/d/Paper",
+    "documents",  # example of the folder path
+    "/mnt/d/Paper",  # example of the folder path
     # Add more directories as needed
 ]
 REQUIRED_EXTS = [".pdf", ".doc"]  # File extensions to be considered for indexing
@@ -30,7 +30,7 @@ CHROMA_COLLECTION_NAME = "my_collection"  # Name of the ChromaDB collection
 INDEXED_FILES_PATH = "indexed_files.json"  # Path to store indexed files metadata
 
 # Default query
-QUERY = "For lotus framework, do we need to convert the table into pandas first?"
+QUERY = "Your example questions?"
 
 # Create directories if they don't exist
 os.makedirs(PERSIST_DIR, exist_ok=True)  # Create storage directory if it doesn't exist
