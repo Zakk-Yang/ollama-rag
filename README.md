@@ -30,6 +30,7 @@ Output example: The address is 'xxx, xxx, xxx'
   - **Text Files**: Plain text (.txt), Markdown (.md), HTML (.html, .htm), XML (.xml), CSV (.csv).
   - **Document Files**: PDF (.pdf), Microsoft Word (.doc, .docx), Rich Text Format (.rtf).
   - **Jupyter Notebooks**: Jupyter Notebook (.ipynb).
+
 ## Project Structure
 ```graphql
 ollama_rag/
@@ -117,10 +118,7 @@ engine.update_index()
 # Run a query
 response = engine.query("where can i find Jason Black's address?") # replace your question
 print(response)
-
 ```
-### Command-Line Interface (CLI)
-
 
 
 ## Contributing
