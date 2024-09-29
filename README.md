@@ -63,8 +63,9 @@ ollama_rag/
 ### Install via PyPI (Recommended)
 You can install `ollama_rag` directly from PyPI:
 ```bash
-pip install ollama_rag
+pip install --upgrade ollama-rag
 ```
+
 ### Install from Source
 1. **Clone the Repository**
 
