@@ -27,7 +27,10 @@ Output example: The address is 'xxx, xxx, xxx'
 - **Custom Embeddings**: Utilizes custom embedding models for better performance.
 - **Error Handling**: Gracefully handles missing directories or files and recreates the index as needed.
 - **Logging**: Provides detailed logs for monitoring and debugging.
-
+- **Advanced Text-Based File Support**: Supports a variety of text-based file formats, including:
+  - **Text Files**: Plain text (.txt), Markdown (.md), HTML (.html, .htm), XML (.xml), CSV (.csv).
+  - **Document Files**: PDF (.pdf), Microsoft Word (.doc, .docx), Rich Text Format (.rtf).
+  - **Jupyter Notebooks**: Jupyter Notebook (.ipynb).
 ## Project Structure
 ```graphql
 my_llama_project/

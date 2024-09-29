@@ -16,7 +16,23 @@ INPUT_DIRS = [  # List of directories where your documents are stored
     "/mnt/d/Paper",  # example of the folder path
     # Add more directories as needed
 ]
-REQUIRED_EXTS = [".pdf", ".doc"]  # File extensions to be considered for indexing
+REQUIRED_EXTS = [
+    # Text-Based Files
+    ".txt",
+    ".md",
+    ".html",
+    ".htm",
+    ".xml",
+    ".json",
+    ".csv",
+    # Document Files
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".rtf",
+    # Jupyter Notebooks
+    ".ipynb",
+]  # File extensions to be considered for indexing
 RECURSIVE = True  # Whether to load files recursively from subdirectories
 
 # Index persistence directory
