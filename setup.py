@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="ollama_rag",
-    version="0.2.4",
+    version="0.2.5",
     author="Zakk Yang",
     author_email="zakkyang@protonmail.com",
     description="A RAG (Retrieval-Augmented Generation) system using Llama Index and ChromaDB",
