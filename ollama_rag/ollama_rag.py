@@ -174,66 +174,72 @@ class OllamaRAG:
         return response
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Run the Ollama RAG query engine.")
-    parser.add_argument(
-        "--query",
-        type=str,
-        required=True,
-        help="The query to run against the index.",
-    )
-    parser.add_argument(
-        "--input_dirs",
-        type=str,
-        nargs="+",
-        default=["/mnt/d/Paper"],
-        help="""Directories containing documents to index. Example: ollama-rag --query "Your custom query here" --input_dirs /path/to/your/documentfolder1 /path/to/your/documentfolder2""",
-    )
-    parser.add_argument(
-        "--required_exts",
-        type=str,
-        nargs="+",
-        default=[
-            ".txt",
-            ".md",
-            ".html",
-            ".htm",
-            ".xml",
-            ".json",
-            ".csv",
-            ".pdf",
-            ".doc",
-            ".docx",
-            ".rtf",
-            ".ipynb",
-        ],
-        help="List of file extensions to include for indexing.",
-    )
+# def main():
+#     parser = argparse.ArgumentParser(description="Run the Ollama RAG query engine.")
+#     parser.add_argument(
+#         "--query",
+#         type=str,
+#         required=True,
+#         help="The query to run against the index.",
+#     )
+#     parser.add_argument(
+#         "--input_dirs",
+#         type=str,
+#         nargs="+",
+#         default=["/mnt/d/Paper"],
+#         help="""Directories containing documents to index. Example: ollama-rag --query "Your custom query here" --input_dirs /path/to/your/documentfolder1 /path/to/your/documentfolder2""",
+#     )
+#     parser.add_argument(
+#         "--required_exts",
+#         type=str,
+#         nargs="+",
+#         default=[
+#             ".txt",
+#             ".md",
+#             ".html",
+#             ".htm",
+#             ".xml",
+#             ".json",
+#             ".csv",
+#             ".pdf",
+#             ".doc",
+#             ".docx",
+#             ".rtf",
+#             ".ipynb",
+#         ],
+#         help="List of file extensions to include for indexing.",
+#     )
 
-    args = parser.parse_args()
+#     args = parser.parse_args()
+#     MODEL_NAME,
+#     EMBEDDING_MODEL_NAME,
+#     PERSIST_DIR,
+#     CHROMA_DB_DIR,
+#     CHROMA_COLLECTION_NAME,
+#     INDEXED_FILES_PATH,
+#     REQUIRED_EXTS,
+#     # Initialize the OllamaRAG engine with provided configurations
+#     engine = OllamaRAG(
+#         model_name= MODEL_NAME,
+#         request_timeout=120.0,
+#         embedding_model_name="BAAI/bge-large-en-v1.5",
+#         trust_remote_code=True,
+#         input_dirs=args.input_dirs,
+#         required_exts=args.required_exts,
+#         recursive=True,
+#         persist_dir=args.persist_dir,
+#         chroma_db_dir=args.chroma_db_dir,
+#         chroma_collection_name=args.chroma_collection_name,
+#         indexed_files_path=args.indexed_files_path,
+#         query=args.query,
+#     )
 
-    # Initialize the OllamaRAG engine with provided configurations
-    engine = OllamaRAG(
-        model_name="llama3.2",
-        request_timeout=120.0,
-        embedding_model_name="BAAI/bge-large-en-v1.5",
-        trust_remote_code=True,
-        input_dirs=args.input_dirs,
-        required_exts=args.required_exts,
-        recursive=True,
-        persist_dir=args.persist_dir,
-        chroma_db_dir=args.chroma_db_dir,
-        chroma_collection_name=args.chroma_collection_name,
-        indexed_files_path=args.indexed_files_path,
-        query=args.query,
-    )
+#     # Update the index with new or updated documents
+#     engine.update_index()
 
-    # Update the index with new or updated documents
-    engine.update_index()
-
-    # Run the query
-    engine.query()
+#     # Run the query
+#     engine.query()
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
