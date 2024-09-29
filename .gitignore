@@ -119,3 +119,5 @@ Thumbs.db
 # Ignore virtual environment directories (if any)
 venv/
 env/
+test.ipynb
+storage
