@@ -121,3 +121,7 @@ venv/
 env/
 test.ipynb
 storage
+
+# Python Bytecode
+__pycache__/
+*.py[cod]
