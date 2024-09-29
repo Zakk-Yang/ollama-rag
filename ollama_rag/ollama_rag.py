@@ -174,23 +174,66 @@ class OllamaRAG:
         return response
 
 
-def main(self):
-    """Entry point for the console script."""
+def main():
     parser = argparse.ArgumentParser(description="Run the Ollama RAG query engine.")
     parser.add_argument(
-        "--update-index",
-        action="store_true",
-        help="Update the index with new or updated documents.",
+        "--query",
+        type=str,
+        required=True,
+        help="The query to run against the index.",
     )
-    parser.add_argument("--query", type=str, help="The query to run against the index.")
+    parser.add_argument(
+        "--input_dirs",
+        type=str,
+        nargs="+",
+        default=["/mnt/d/Paper"],
+        help="""Directories containing documents to index. Example: ollama-rag --query "Your custom query here" --input_dirs /path/to/your/documentfolder1 /path/to/your/documentfolder2""",
+    )
+    parser.add_argument(
+        "--required_exts",
+        type=str,
+        nargs="+",
+        default=[
+            ".txt",
+            ".md",
+            ".html",
+            ".htm",
+            ".xml",
+            ".json",
+            ".csv",
+            ".pdf",
+            ".doc",
+            ".docx",
+            ".rtf",
+            ".ipynb",
+        ],
+        help="List of file extensions to include for indexing.",
+    )
+
     args = parser.parse_args()
 
-    if args.update_index:
-        self.update_index()
+    # Initialize the OllamaRAG engine with provided configurations
+    engine = OllamaRAG(
+        model_name="llama3.2",
+        request_timeout=120.0,
+        embedding_model_name="BAAI/bge-large-en-v1.5",
+        trust_remote_code=True,
+        input_dirs=args.input_dirs,
+        required_exts=args.required_exts,
+        recursive=True,
+        persist_dir=args.persist_dir,
+        chroma_db_dir=args.chroma_db_dir,
+        chroma_collection_name=args.chroma_collection_name,
+        indexed_files_path=args.indexed_files_path,
+        query=args.query,
+    )
 
-    if args.query:
-        self.query(args.query)
-    elif self.query_text:
-        self.query()
-    else:
-        logging.error("No query provided. Use --query to specify a query.")
+    # Update the index with new or updated documents
+    engine.update_index()
+
+    # Run the query
+    engine.query()
+
+
+if __name__ == "__main__":
+    main()

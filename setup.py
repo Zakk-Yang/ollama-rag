@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="ollama_rag",
-    version="0.2.3",
+    version="0.2.4",
     author="Zakk Yang",
     author_email="zakkyang@protonmail.com",
     description="A RAG (Retrieval-Augmented Generation) system using Llama Index and ChromaDB",
@@ -207,7 +207,7 @@ setup(
     include_package_data=True,  # Ensures files specified in MANIFEST.in are included
     entry_points={
         "console_scripts": [
-            "ollama-rag=ollama_rag.ollama_rag:OllamaRAG.main",  # Adjust the module and class as needed
+            "ollama-rag=ollama_rag.ollama_rag:main",  # Points to the standalone main function
         ],
     },
 )
