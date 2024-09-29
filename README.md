@@ -1,6 +1,11 @@
-# Llama Index Query Engine Project
+# Llama Index Query Engine + Ollama Model to Create Your Own Knowledge Pool
 
 This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language.
+
+Input Question Example: where can i find the adress of Jason Black?
+Output example: The address is 'xxx, xxx, xxx'
+
+
 
 ## Table of Contents
 
