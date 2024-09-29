@@ -13,7 +13,6 @@ Output example: The address is 'xxx, xxx, xxx'
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -33,21 +32,24 @@ Output example: The address is 'xxx, xxx, xxx'
   - **Jupyter Notebooks**: Jupyter Notebook (.ipynb).
 ## Project Structure
 ```graphql
-my_llama_project/
-├── main.py
-├── models.py
-├── data_loader.py
-├── indexer.py
-├── query_engine.py
-├── prompts.py
-├── configs.py            # Updated config file with multiple INPUT_DIRS
-├── document_tracker.py   # New module for tracking indexed files
-├── requirements.txt
-├── storage/              # Directory for persisted index data (created automatically if missing)
-├── chroma_db/            # Directory for ChromaDB data (created automatically if missing)
-├── indexed_files.json    # Indexed files metadata (auto-created if missing)
-└── documents/            # Directory containing the documents to be indexed
-
+ollama_rag/
+├── ollama_rag/
+│   ├── __init__.py
+│   ├── ollama_rag.py         # Main class OllamaRAG
+│   ├── models.py
+│   ├── data_loader.py
+│   ├── indexer.py
+│   ├── query_engine.py
+│   ├── prompts.py
+│   ├── document_tracker.py
+│ 
+├── tests/
+│   └── ... (test scripts)
+├── setup.py
+├── README.md
+├── LICENSE
+├── MANIFEST.in
+└── requirements.txt
 ```
 
 ## Prerequisites
@@ -57,7 +59,12 @@ my_llama_project/
 - **Pip**: Python package installer.
 
 ## Installation
-
+### Install via PyPI (Recommended)
+You can install `ollama_rag` directly from PyPI:
+```bash
+pip install ollama_rag
+```
+### Install from Source
 1. **Clone the Repository**
 
    ```bash
@@ -71,9 +78,9 @@ my_llama_project/
     conda activate env
     ```
 
-3. **Install Dependencies**
+3. **Install Dependencies and the Package**
     ```bash
-    pip install -r requirements.txt
+    pip install .
     ```
     
 4. **Install Ollama model**
@@ -83,30 +90,38 @@ Install your selected model by the following example:
 ollama pull llama3.2
 ```
 
-## Configuration
-1. **Configure Input Directories**
-Open configs.py and update the INPUT_DIRS list with the paths to your document directories.
-```python
-INPUT_DIRS = [
-    '/your/path/to/your/document1',
-    '/your/path/to/your/document2',
-    # Add more directories as needed
-]
-```
-2. **Model Name and Other Path Locations**
-
-
 ## Usage
-1. Run the Application
-```bash
-python main.py
-```
+### Running a Query
+```python
+from ollama_rag import OllamaRAG
 
-2.Running with a Custom Query
+# Initialize the query engine with your configurations
+engine = OllamaRAG(
+    model_name="llama3.2", # replace your ollama model name
+    request_timeout=120.0,
+    embedding_model_name="BAAI/bge-large-en-v1.5", # replace your hugging face embedding model
+    trust_remote_code=True,
+    input_dirs=[
+        "/your/path/to/your/documents",
+        # Add more directories as needed
+    ],
+    required_exts=[
+        ".txt", ".md", ".html", ".htm", ".xml", ".json", ".csv",
+        ".pdf", ".doc", ".docx", ".rtf", ".ipynb",
+    ]
+)
 
-```bash
-python main.py --query "Your custom query here"
+# Update the index with new or updated documents
+engine.update_index()
+
+# Run a query
+response = engine.query("where can i find Jason Black's address?") # replace your question
+print(response)
+
 ```
+### Command-Line Interface (CLI)
+
+
 
 ## Contributing
 Contributions are welcome! Please follow these steps:

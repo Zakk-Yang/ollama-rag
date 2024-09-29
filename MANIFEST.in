@@ -1,0 +1,6 @@
+# MANIFEST.in
+
+include README.md
+include LICENSE
+recursive-include ollama_rag *.json *.txt *.md
+recursive-include tests *.py

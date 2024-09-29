@@ -8,24 +8,29 @@ asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_16983411
 async-timeout==4.0.3
 asyncpg==0.29.0
 attrs==24.2.0
+autocommand==2.2.2
 backoff==2.2.1
+backports.tarfile==1.2.0
 bcrypt==4.2.0
 beautifulsoup4==4.12.3
 build==1.2.2
 cachetools==5.5.0
 certifi==2024.8.30
+cffi==1.17.1
 charset-normalizer==3.3.2
 chroma-hnswlib==0.7.6
 chromadb==0.5.11
 click==8.1.7
 coloredlogs==15.0.1
 comm @ file:///home/conda/feedstock_root/build_artifacts/comm_1710320294760/work
+cryptography==43.0.1
 dataclasses-json==0.6.7
 debugpy @ file:///home/conda/feedstock_root/build_artifacts/debugpy_1727240596241/work
 decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
 Deprecated==1.2.14
 dirtyjson==1.0.8
 distro==1.9.0
+docutils==0.21.2
 durationpy==0.7
 exceptiongroup @ file:///home/conda/feedstock_root/build_artifacts/exceptiongroup_1720869315914/work
 executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1725214404607/work
@@ -47,14 +52,22 @@ humanfriendly==10.0
 idna==3.10
 importlib_metadata==8.4.0
 importlib_resources==6.4.5
+inflect==7.3.1
 ipykernel @ file:///home/conda/feedstock_root/build_artifacts/ipykernel_1719845459717/work
 ipython @ file:///home/conda/feedstock_root/build_artifacts/ipython_1725050136642/work
+jaraco.classes==3.4.0
+jaraco.collections==5.1.0
+jaraco.context==5.3.0
+jaraco.functools==4.0.1
+jaraco.text==3.12.1
 jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1696326070614/work
+jeepney==0.8.0
 Jinja2==3.1.4
 jiter==0.5.0
 joblib==1.4.2
 jupyter_client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1726610684920/work
 jupyter_core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_core_1727163409502/work
+keyring==25.4.1
 kubernetes==31.0.0
 llama-cloud==0.1.0
 llama-index==0.11.14
@@ -83,11 +96,13 @@ mdurl==0.1.2
 minijinja==2.2.0
 mmh3==5.0.1
 monotonic==1.6
+more-itertools==10.3.0
 mpmath==1.3.0
 multidict==6.1.0
 mypy-extensions==1.0.0
 nest_asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1705850609492/work
 networkx==3.3
+nh3==0.2.18
 nltk==3.9.1
 numpy==1.26.4
 nvidia-cublas-cu12==12.1.3.1
@@ -104,6 +119,7 @@ nvidia-nvjitlink-cu12==12.6.68
 nvidia-nvtx-cu12==12.1.105
 oauthlib==3.2.2
 ollama==0.3.3
+ollama_rag @ file:///mnt/d/ollama_rag/dist/ollama_rag-0.1.0-py3-none-any.whl#sha256=96f27a331f7b09d8885521e0b6b8c888da6fe3a14789aeeb3c6297e8ca47ac48
 onnxruntime==1.19.2
 openai==1.50.2
 opentelemetry-api==1.27.0
@@ -125,6 +141,7 @@ pexpect @ file:///home/conda/feedstock_root/build_artifacts/pexpect_170611312530
 pgvector==0.2.5
 pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
 pillow==10.4.0
+pkginfo==1.10.0
 platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1726613481435/work
 posthog==3.6.6
 prompt_toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1727341649933/work
@@ -135,6 +152,7 @@ ptyprocess @ file:///home/conda/feedstock_root/build_artifacts/ptyprocess_160941
 pure_eval @ file:///home/conda/feedstock_root/build_artifacts/pure_eval_1721585709575/work
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
+pycparser==2.22
 pydantic==2.9.2
 pydantic_core==2.23.4
 Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1714846767233/work
@@ -146,14 +164,18 @@ python-dotenv==1.0.1
 pytz==2024.2
 PyYAML==6.0.2
 pyzmq @ file:///home/conda/feedstock_root/build_artifacts/pyzmq_1725448950123/work
+readme_renderer==44.0
 regex==2024.9.11
 requests==2.32.3
 requests-oauthlib==2.0.0
+requests-toolbelt==1.0.0
+rfc3986==2.0.0
 rich==13.8.1
 rsa==4.9
 safetensors==0.4.5
 scikit-learn==1.5.2
 scipy==1.14.1
+SecretStorage==3.3.3
 sentence-transformers==3.1.1
 shellingham==1.5.4
 six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
@@ -175,6 +197,8 @@ tqdm==4.66.5
 traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1713535121073/work
 transformers==4.45.1
 triton==3.0.0
+twine==5.1.1
+typeguard==4.3.0
 typer==0.12.5
 typing-inspect==0.9.0
 typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1717802530399/work

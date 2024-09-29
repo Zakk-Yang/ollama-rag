@@ -2,21 +2,21 @@
 
 import os
 import json
-from configs import INDEXED_FILES_PATH
+from ollama_rag.configs import INDEXED_FILES_PATH
 
 
-def load_indexed_files():
+def load_indexed_files(indexed_files_path):
     """Load indexed files metadata from disk."""
-    if os.path.exists(INDEXED_FILES_PATH):
-        with open(INDEXED_FILES_PATH, "r") as f:
+    if os.path.exists(indexed_files_path):
+        with open(indexed_files_path, "r") as f:
             return json.load(f)
     else:
         return {}
 
 
-def save_indexed_files(indexed_files):
+def save_indexed_files(indexed_files, indexed_files_path):
     """Save indexed files metadata to disk."""
-    with open(INDEXED_FILES_PATH, "w") as f:
+    with open(indexed_files_path, "w") as f:
         json.dump(indexed_files, f)
 
 

@@ -2,7 +2,7 @@
 
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from configs import MODEL_NAME, REQUEST_TIMEOUT, EMBEDDING_MODEL_NAME, TRUST_REMOTE_CODE
+from ollama_rag.configs import MODEL_NAME, REQUEST_TIMEOUT, EMBEDDING_MODEL_NAME, TRUST_REMOTE_CODE
 
 def setup_llm(model_name=MODEL_NAME, request_timeout=REQUEST_TIMEOUT):
     """Set up the LLM model."""
