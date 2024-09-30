@@ -3,7 +3,6 @@
 This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language.
 
 Query Question: 
-Input:
 ```markdown
 Can llm generate creative contents? where is this pdf located
 ```
