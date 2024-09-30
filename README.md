@@ -2,8 +2,22 @@
 
 This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language.
 
-Input Question Example: where can i find the adress of Jason Black?
-Output example: The address is 'xxx, xxx, xxx'
+Query Question: 
+Input:
+```markdown
+Can llm generate creative contents? where is this pdf located
+```
+
+Output:
+```markdown
+Based on the provided context information:
+
+1. **Can LLM generate creative contents?**
+The answer is yes. According to the text, researchers have explored methods to improve idea generation using Large Language Models (LLMs), and their work shows that LLM-generated ideas can be more novel than expert research ideas.
+
+2. **Where is this PDF located?**
+The PDF file path is `/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf`.
+```
 
 
 
@@ -90,6 +104,15 @@ Please visit https://ollama.com/download for more details.
 Install your selected model by the following example: 
 ```bash
 ollama pull llama3.2
+```
+### For Mac:
+You can install from the source and manually install the following packages if the install is not successful:
+```bash
+pip install llama_index
+pip install llama-index-llms-ollama
+pip install llama-index-embeddings-huggingface
+pip install chromadb
+pip install llama-index-vector-stores-chroma
 ```
 
 ## Usage
