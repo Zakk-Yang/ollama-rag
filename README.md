@@ -2,33 +2,54 @@
 
 This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language.
 
-Query Question: 
-```markdown
-Can llm generate creative contents? where is this pdf located
-```
-
-Output:
-```markdown
-Based on the provided context information:
-
-1. **Can LLM generate creative contents?**
-The answer is yes. According to the text, researchers have explored methods to improve idea generation using Large Language Models (LLMs), and their work shows that LLM-generated ideas can be more novel than expert research ideas.
-
-2. **Where is this PDF located?**
-The PDF file path is `/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf`.
-```
-
 
 
 ## Table of Contents
 
+- [Usage](#usage)
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Usage
+### Running a Query
+```python
+from ollama_rag import OllamaRAG
+
+# Initialize the query engine with your configurations
+engine = OllamaRAG(
+    model_name="llama3.2",  # Replace with your Ollama model name
+    request_timeout=120.0,
+    embedding_model_name="BAAI/bge-large-en-v1.5",  # Replace with your Hugging Face embedding model
+    trust_remote_code=True,
+    input_dirs=[
+        "/your/path/to/your/documents",
+        # Add more directories as needed
+    ],
+    required_exts=[
+        ".txt", ".md", ".html", ".htm", ".xml", ".json", ".csv",
+        ".pdf", ".doc", ".docx", ".rtf", ".ipynb",
+        ".ppt", ".pptx", ".xls", ".xlsx",  # you can remove required_exts by default to capture all supported extentions
+    ]
+)
+
+# Update the index with new or updated documents
+engine.update_index()
+
+# Run a query
+response = engine.query("can LLM generate creative contents?")
+print(response)
+
+```
+Ouptut is a dict:
+
+```python
+{'response': "Yes, the text suggests that LLMs (Large Language Models) can generate novel research ideas and even outperform human experts in terms of novelty. The authors claim that their AI agent generates ideas that are statistically more novel than those written by expert researchers. However, it's worth noting that the effectiveness of LLMs in generating creative content is a topic of ongoing debate, and not all studies have found similar results (e.g., Chakrabarty et al. (2024) found that AI writings are less creative than professional writers). Nevertheless, based on the provided context, it appears that LLMs can generate novel research ideas under certain conditions.", 'sources': [{'document_id': 'Can LLMs Generate Novel Research Ideas.pdf', 'file_path': '/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf', 'page_number': '18', 'sheet_name': 'N/A', 'text_snippet': '9 Related Work\nResearch idea generation and execution . Several prior works explored methods to improve idea\ngeneration, such as iterative novelty boosting (Wang et al., 2024), multi-agent collaborati...'}]}
+```
+
 
 ## Features
 
@@ -133,41 +154,6 @@ pip install --upgrade ollama-rag
     
 
 
-## Usage
-### Running a Query
-```python
-from ollama_rag import OllamaRAG
-
-# Initialize the query engine with your configurations
-engine = OllamaRAG(
-    model_name="llama3.2",  # Replace with your Ollama model name
-    request_timeout=120.0,
-    embedding_model_name="BAAI/bge-large-en-v1.5",  # Replace with your Hugging Face embedding model
-    trust_remote_code=True,
-    input_dirs=[
-        "/your/path/to/your/documents",
-        # Add more directories as needed
-    ],
-    required_exts=[
-        ".txt", ".md", ".html", ".htm", ".xml", ".json", ".csv",
-        ".pdf", ".doc", ".docx", ".rtf", ".ipynb",
-        ".ppt", ".pptx", ".xls", ".xlsx",  # you can remove required_exts by default to capture all supported extentions
-    ]
-)
-
-# Update the index with new or updated documents
-engine.update_index()
-
-# Run a query
-response = engine.query("can LLM generate creative contents?")
-print(response)
-
-```
-Ouptut is a dict:
-
-```python
-{'response': "Yes, the text suggests that LLMs (Large Language Models) can generate novel research ideas and even outperform human experts in terms of novelty. The authors claim that their AI agent generates ideas that are statistically more novel than those written by expert researchers. However, it's worth noting that the effectiveness of LLMs in generating creative content is a topic of ongoing debate, and not all studies have found similar results (e.g., Chakrabarty et al. (2024) found that AI writings are less creative than professional writers). Nevertheless, based on the provided context, it appears that LLMs can generate novel research ideas under certain conditions.", 'sources': [{'document_id': 'Can LLMs Generate Novel Research Ideas.pdf', 'file_path': '/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf', 'page_number': '18', 'sheet_name': 'N/A', 'text_snippet': '9 Related Work\nResearch idea generation and execution . Several prior works explored methods to improve idea\ngeneration, such as iterative novelty boosting (Wang et al., 2024), multi-agent collaborati...'}]}
-```
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
