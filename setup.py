@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="ollama_rag",
-    version="0.3.1",
+    version="0.4.0",
     author="Zakk Yang",
     author_email="zakkyang@protonmail.com",
     description="A RAG (Retrieval-Augmented Generation) system using Llama Index and ChromaDB",
@@ -27,6 +27,7 @@ setup(
         "llama-index-embeddings-huggingface",
         "chromadb",
         "llama-index-vector-stores-chroma",
+        "pandas",
     ],
     include_package_data=True,  # Ensures files specified in MANIFEST.in are included
     # entry_points={

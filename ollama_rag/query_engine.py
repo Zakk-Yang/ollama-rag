@@ -1,7 +1,5 @@
 # query_engine.py
 
-from llama_index.core import VectorStoreIndex, ServiceContext, SimpleDirectoryReader
-
 
 def create_query_engine(index, qa_prompt_template=None):
     """Set up the query engine."""

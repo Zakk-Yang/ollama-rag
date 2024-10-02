@@ -2,7 +2,6 @@
 
 import os
 import json
-from ollama_rag.configs import INDEXED_FILES_PATH
 
 
 def load_indexed_files(indexed_files_path):

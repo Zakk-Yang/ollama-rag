@@ -17,7 +17,6 @@ INPUT_DIRS = [  # List of directories where your documents are stored
     # Add more directories as needed
 ]
 REQUIRED_EXTS = [
-    # Text-Based Files
     ".txt",
     ".md",
     ".html",
@@ -25,13 +24,15 @@ REQUIRED_EXTS = [
     ".xml",
     ".json",
     ".csv",
-    # Document Files
     ".pdf",
     ".doc",
     ".docx",
     ".rtf",
-    # Jupyter Notebooks
     ".ipynb",
+    ".ppt",
+    ".pptx",
+    ".xls",
+    ".xlsx",
 ]  # File extensions to be considered for indexing
 RECURSIVE = True  # Whether to load files recursively from subdirectories
 

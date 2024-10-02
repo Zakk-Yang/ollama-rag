@@ -40,9 +40,22 @@ The PDF file path is `/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf`.
 - **Error Handling**: Gracefully handles missing directories or files and recreates the index as needed.
 - **Logging**: Provides detailed logs for monitoring and debugging.
 - **Advanced Text-Based File Support**: Supports a variety of text-based file formats, including:
-  - **Text Files**: Plain text (.txt), Markdown (.md), HTML (.html, .htm), XML (.xml), CSV (.csv).
-  - **Document Files**: PDF (.pdf), Microsoft Word (.doc, .docx), Rich Text Format (.rtf).
-  - **Jupyter Notebooks**: Jupyter Notebook (.ipynb).
+    ".txt",
+    ".md",
+    ".html",
+    ".htm",
+    ".xml",
+    ".json",
+    ".csv",
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".rtf",
+    ".ipynb",
+    ".ppt",
+    ".pptx",
+    ".xls",
+    ".xlsx",
 
 ## Project Structure
 ```graphql
@@ -71,6 +84,26 @@ ollama_rag/
 - **Python 3.7 or higher**: Ensure you have Python installed.
 - **Git**: For cloning the repository.
 - **Pip**: Python package installer.
+- **ollama**: https://ollama.com/download, install your selected model by the following example: 
+```bash
+ollama pull llama3.2
+```
+- **LibreOffice**: Required for converting .ppt files to .pptx when processing PowerPoint files.
+Ubuntu/Debian:
+```bash
+sudo apt update
+sudo apt install libreoffice
+```
+macOS (using Homebrew):
+```bash
+brew install --cask libreoffice
+```
+Windows:
+Download and install from the LibreOffice official website https://www.libreoffice.org/download/download-libreoffice/.
+
+
+
+
 
 ## Installation
 ### Install via PyPI (Recommended)
@@ -98,21 +131,7 @@ pip install --upgrade ollama-rag
     pip install .
     ```
     
-4. **Install Ollama model**
-Please visit https://ollama.com/download for more details.
-Install your selected model by the following example: 
-```bash
-ollama pull llama3.2
-```
-### For Mac:
-You can install from the source and manually install the following packages if the install is not successful:
-```bash
-pip install llama_index
-pip install llama-index-llms-ollama
-pip install llama-index-embeddings-huggingface
-pip install chromadb
-pip install llama-index-vector-stores-chroma
-```
+
 
 ## Usage
 ### Running a Query
@@ -121,9 +140,9 @@ from ollama_rag import OllamaRAG
 
 # Initialize the query engine with your configurations
 engine = OllamaRAG(
-    model_name="llama3.2", # replace your ollama model name
+    model_name="llama3.2",  # Replace with your Ollama model name
     request_timeout=120.0,
-    embedding_model_name="BAAI/bge-large-en-v1.5", # replace your hugging face embedding model
+    embedding_model_name="BAAI/bge-large-en-v1.5",  # Replace with your Hugging Face embedding model
     trust_remote_code=True,
     input_dirs=[
         "/your/path/to/your/documents",
@@ -132,6 +151,7 @@ engine = OllamaRAG(
     required_exts=[
         ".txt", ".md", ".html", ".htm", ".xml", ".json", ".csv",
         ".pdf", ".doc", ".docx", ".rtf", ".ipynb",
+        ".ppt", ".pptx", ".xls", ".xlsx",  # you can remove required_exts by default to capture all supported extentions
     ]
 )
 
@@ -139,10 +159,15 @@ engine = OllamaRAG(
 engine.update_index()
 
 # Run a query
-response = engine.query("where can i find Jason Black's address?") # replace your question
+response = engine.query("can LLM generate creative contents?")
 print(response)
-```
 
+```
+Ouptut is a dict:
+
+```python
+{'response': "Yes, the text suggests that LLMs (Large Language Models) can generate novel research ideas and even outperform human experts in terms of novelty. The authors claim that their AI agent generates ideas that are statistically more novel than those written by expert researchers. However, it's worth noting that the effectiveness of LLMs in generating creative content is a topic of ongoing debate, and not all studies have found similar results (e.g., Chakrabarty et al. (2024) found that AI writings are less creative than professional writers). Nevertheless, based on the provided context, it appears that LLMs can generate novel research ideas under certain conditions.", 'sources': [{'document_id': 'Can LLMs Generate Novel Research Ideas.pdf', 'file_path': '/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf', 'page_number': '18', 'sheet_name': 'N/A', 'text_snippet': '9 Related Work\nResearch idea generation and execution . Several prior works explored methods to improve idea\ngeneration, such as iterative novelty boosting (Wang et al., 2024), multi-agent collaborati...'}]}
+```
 
 ## Contributing
 Contributions are welcome! Please follow these steps:

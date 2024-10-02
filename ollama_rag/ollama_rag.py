@@ -81,7 +81,7 @@ class OllamaRAG:
                 trust_remote_code=self.trust_remote_code,
             )
 
-            # Set global settings
+            # Configure global Settings
             Settings.llm = self.llm
             Settings.embed_model = self.embed_model
 
@@ -118,7 +118,11 @@ class OllamaRAG:
                 logging.info(f"- {file}")
 
             # Load data from new or updated files
-            docs = load_data(files=new_or_updated_files)
+            docs = load_data(
+                input_dirs=self.input_dirs,
+                required_exts=self.required_exts,
+                recursive=self.recursive,
+            )
             if not docs:
                 logging.error("No new documents to index.")
                 return
@@ -157,7 +161,15 @@ class OllamaRAG:
         self.query_engine = create_query_engine(self.index, self.qa_prompt_template)
 
     def query(self, query_text=None):
-        """Run a query against the index."""
+        """
+        Run a query against the index and return the response along with meta information.
+
+        Parameters:
+        - query_text (str): The query to run.
+
+        Returns:
+        - dict: A dictionary containing the response and source metadata.
+        """
         if query_text is None:
             query_text = self.query_text
 
@@ -165,14 +177,139 @@ class OllamaRAG:
             logging.error(
                 "Query engine not initialized. Please run update_index() first."
             )
-            return
+            return {"response": "Query engine not initialized.", "sources": []}
 
-        # Generate the response
-        logging.info(f"Running query: {query_text}")
-        response = self.query_engine.query(query_text)
-        print(response)
-        return response
+        try:
+            # Generate the response
+            logging.info(f"Running query: {query_text}")
+            response = self.query_engine.query(query_text)
 
+            # Extract source nodes and their metadata
+            source_nodes = response.source_nodes
+            sources = []
+            for node in source_nodes:
+                metadata = node.node.metadata
+                logging.debug(f"Node metadata: {metadata}")
+
+                source_info = {
+                    "document_id": metadata.get("file_name", "N/A"),
+                    "file_path": metadata.get("file_path", "N/A"),
+                    "page_number": metadata.get("page_label", "N/A"),
+                    "sheet_name": metadata.get("sheet_name", "N/A"),
+                    "text_snippet": node.node.get_text()[:200]
+                    + "...",  # get first 200 words
+                }
+                sources.append(source_info)
+
+            # Prepare the final response
+            result = {
+                "response": str(response),
+                "sources": sources,
+            }
+
+            return result
+        except Exception as e:
+            logging.error(f"An error occurred during querying: {e}")
+            return {
+                "response": "An error occurred while processing your query.",
+                "sources": [],
+            }
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Run the Ollama RAG query engine.")
+    parser.add_argument(
+        "--query",
+        type=str,
+        required=True,
+        help="The query to run against the index.",
+    )
+    parser.add_argument(
+        "--input_dirs",
+        type=str,
+        nargs="+",
+        default=["/mnt/d/Paper"],
+        help="""Directories containing documents to index. 
+                Example: python ollama_rag.py --query "Your query here" --input_dirs /path/to/dir1 /path/to/dir2""",
+    )
+    parser.add_argument(
+        "--required_exts",
+        type=str,
+        nargs="+",
+        default=[
+            ".txt",
+            ".md",
+            ".html",
+            ".htm",
+            ".xml",
+            ".json",
+            ".csv",
+            ".pdf",
+            ".doc",
+            ".docx",
+            ".rtf",
+            ".ipynb",
+            ".ppt",
+            ".pptx",
+            ".xls",
+            ".xlsx",
+        ],
+        help="List of file extensions to include for indexing.",
+    )
+    parser.add_argument(
+        "--persist_dir",
+        type=str,
+        default=PERSIST_DIR,
+        help="Directory to persist the index.",
+    )
+    parser.add_argument(
+        "--chroma_db_dir",
+        type=str,
+        default=CHROMA_DB_DIR,
+        help="Directory for ChromaDB storage.",
+    )
+    parser.add_argument(
+        "--chroma_collection_name",
+        type=str,
+        default=CHROMA_COLLECTION_NAME,
+        help="Name of the ChromaDB collection.",
+    )
+    parser.add_argument(
+        "--indexed_files_path",
+        type=str,
+        default=INDEXED_FILES_PATH,
+        help="Path to the file tracking indexed documents.",
+    )
+
+    args = parser.parse_args()
+
+    # Initialize the OllamaRAG engine with provided configurations
+    engine = OllamaRAG(
+        model_name=MODEL_NAME,
+        request_timeout=120.0,
+        embedding_model_name=EMBEDDING_MODEL_NAME,
+        trust_remote_code=True,
+        input_dirs=args.input_dirs,
+        required_exts=args.required_exts,
+        recursive=True,
+        persist_dir=args.persist_dir,
+        chroma_db_dir=args.chroma_db_dir,
+        chroma_collection_name=args.chroma_collection_name,
+        indexed_files_path=args.indexed_files_path,
+        query=args.query,
+        qa_prompt_template=qa_prompt_template,
+    )
+
+    # Update the index with new or updated documents
+    engine.update_index()
+
+    # Run the query
+    result = engine.query()
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
 
 # def main():
 #     parser = argparse.ArgumentParser(description="Run the Ollama RAG query engine.")
