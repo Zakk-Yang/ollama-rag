@@ -1,6 +1,6 @@
 # Llama Index Query Engine + Ollama Model to Create Your Own Knowledge Pool
 
-This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language.
+This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language. You can connect to any local folders, and of course, you can connect OneDrive and iCloud folders.
 
 
 
@@ -28,6 +28,10 @@ engine = OllamaRAG(
     input_dirs=[
         "/your/path/to/your/documents",
         # Add more directories as needed
+        # if you are in wsl environment, make sure your path is like "/mnt/c/..."
+        # if you are in windows, use r"C:\Users\<YourUsername>\Documents", etc
+        # if you are in mac, use   "/Users/<YourUsername>/Documents", etc
+        # if you want to find obsidian notes, find "iCloud~md~obsidian" in your icloud. Or you find it in your local.
     ],
     required_exts=[
         ".txt", ".md", ".html", ".htm", ".xml", ".json", ".csv",
@@ -60,6 +64,7 @@ Ouptut is a dict:
 
 
 ## Features
+
 
 - **Modular Design**: The project is organized into separate modules for easy maintenance and scalability.
 - **Efficient Indexing**: Uses ChromaDB to store embeddings, allowing efficient indexing and querying.
@@ -117,7 +122,10 @@ ollama_rag/
 ```bash
 ollama pull llama3.2
 ```
-- **LibreOffice**: Required for converting .ppt files to .pptx when processing PowerPoint files.
+- **LibreOffice**:
+
+Required for converting .ppt files to .pptx when processing PowerPoint files. 
+After conversion, I suggest you delete the ppt as it will always be converted and re-indexed again.
 Ubuntu/Debian:
 ```bash
 sudo apt update
