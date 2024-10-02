@@ -47,7 +47,12 @@ print(response)
 Ouptut is a dict:
 
 ```json
-{'response': "Yes, the text suggests that LLMs (Large Language Models) can generate novel research ideas and even outperform human experts in terms of novelty. The authors claim that their AI agent generates ideas that are statistically more novel than those written by expert researchers. However, it's worth noting that the effectiveness of LLMs in generating creative content is a topic of ongoing debate, and not all studies have found similar results (e.g., Chakrabarty et al. (2024) found that AI writings are less creative than professional writers). Nevertheless, based on the provided context, it appears that LLMs can generate novel research ideas under certain conditions.", 'sources': [{'document_id': 'Can LLMs Generate Novel Research Ideas.pdf', 'file_path': '/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf', 'page_number': '18', 'sheet_name': 'N/A', 'text_snippet': '9 Related Work\nResearch idea generation and execution . Several prior works explored methods to improve idea\ngeneration, such as iterative novelty boosting (Wang et al., 2024), multi-agent collaborati...'}]}
+{'response': "Yes, the text suggests that LLMs (Large Language Models) can generate novel research ideas and even outperform human experts in terms of novelty. The authors claim that their AI agent generates ideas that are statistically more novel than those written by expert researchers. However, it's worth noting that the effectiveness of LLMs in generating creative content is a topic of ongoing debate, and not all studies have found similar results (e.g., Chakrabarty et al. (2024) found that AI writings are less creative than professional writers). Nevertheless, based on the provided context, it appears that LLMs can generate novel research ideas under certain conditions.",
+  'sources': [
+      {'document_id': 'Can LLMs Generate Novel Research Ideas.pdf', 'file_path': '/mnt/d/Paper/Can LLMs Generate Novel Research Ideas.pdf', 'page_number': '18', 'sheet_name': 'N/A', 'text_snippet': '9 Related Work\nResearch idea generation and execution . Several prior works explored methods to improve idea\ngeneration, such as iterative novelty boosting (Wang et al., 2024), multi-agent collaborati...'}
+      ]
+  
+}
 ```
 
 
