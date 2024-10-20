@@ -1,3 +1,6 @@
+This package will be replaced by https://github.com/Zakk-Yang/nexusync
+
+
 # Llama Index Query Engine + Ollama Model to Create Your Own Knowledge Pool
 
 This project is a robust and modular application that builds an efficient query engine using LlamaIndex, ChromaDB, and custom embeddings. It allows you to index documents from multiple directories and query them using natural language. You can connect to any local folders, and of course, you can connect OneDrive and iCloud folders.
